@@ -16,11 +16,24 @@ import UIKit
         }
     }
     
-    @IBInspectable var backgroundImageColor: UIColor = UIColor.init(red: 0, green: 122/255.0, blue: 255/255.0, alpha: 1) {
+    @IBInspectable var backgroundImageColor: UIColor = .white {
         didSet {
             refreshColor(backgroundImageColor)
         }
     }
+    
+    @IBInspectable var borderWidth: CGFloat = 0 {
+        didSet {
+            refreshBorder(borderWidth)
+        }
+    }
+    
+    @IBInspectable var borderColor: UIColor = .white {
+        didSet {
+            refreshBorderColor(borderColor)
+        }
+    }
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +52,8 @@ import UIKit
     private func sharedInit() {
         refreshCorners(cornerRadius)
         refreshColor(backgroundImageColor)
+        refreshBorderColor(borderColor)
+        refreshBorder(borderWidth)
     }
     
     private func refreshCorners(_ value: CGFloat) {
@@ -50,6 +65,15 @@ import UIKit
         setBackgroundImage(image, for: .normal)
         clipsToBounds = true
     }
+    
+    private func refreshBorder(_ width: CGFloat) {
+        layer.borderWidth = width
+    }
+    
+    private func refreshBorderColor(_ color: UIColor) {
+        layer.borderColor = color.cgColor
+    }
+
     
     private func createImage(fromColor color: UIColor) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 1, height: 1), true, 0.0)

@@ -11,24 +11,30 @@ import TextFieldEffects
 
 class AuthViewController: UIViewController {
 
-    @IBOutlet weak var containerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordTextField: HoshiTextField!
+    @IBOutlet weak var containerView: UIView!
     
     private var password = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // remove "Back" text from nav bar back button
-        self.navigationController?.navigationBar.topItem?.title = String()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        setupUI()
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func setupUI() {
+        // remove "Back" text from nav bar back button
+        navigationController?.navigationBar.topItem?.title = String()
+        containerViewBottomConstraint.constant = view.frame.maxY / 2 - containerView.frame.height / 2
+        view.layoutIfNeeded()
     }
     
     // MARK: – Action Handlers
@@ -37,18 +43,25 @@ class AuthViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @objc private func keyboardWillShow() {
-        // define new values
-        let offset = navigationController?.navigationBar.frame.height ?? 0
-        containerViewTopConstraint.constant = 146 + offset
-        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: { [weak self] in
-            guard let self = self else { return }
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            // define new values
+            let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let endFrameY = endFrame?.origin.y ?? 0
+            containerViewBottomConstraint.constant = view.frame.maxY - endFrameY
+            
+            // animate
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: { [weak self] in
+                guard let self = self else { return }
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
     }
     
     @objc private func keyboardWillHide() {
         // set contsrains back to initial values
+        containerViewBottomConstraint.constant = view.frame.maxY / 2 - containerView.frame.height / 2
+        
         UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: { [weak self] in
             guard let self = self else { return }
             self.view.layoutIfNeeded()
