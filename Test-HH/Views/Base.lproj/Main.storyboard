@@ -75,18 +75,65 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSD-9q-gtW">
                                 <rect key="frame" x="0.0" y="179" width="375" height="309"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IRe-yA-JSN">
-                                        <rect key="frame" x="73" y="45" width="97" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Почта" textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="IRe-yA-JSN" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="15" y="10" width="345" height="20"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="0.61150470890410957" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q1g-BW-tKL">
+                                        <rect key="frame" x="15" y="45" width="345" height="1"/>
+                                        <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="hSf-Ej-0rm"/>
+                                        </constraints>
+                                    </view>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Пароль" textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="AZe-HD-X5d" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="15" y="73" width="345" height="20"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="0.61150470889999997" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="nnA-Xc-fVU" id="uQw-PX-2A9"/>
+                                        </connections>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tyr-Jd-A83">
+                                        <rect key="frame" x="15" y="108" width="345" height="1"/>
+                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="3I5-9m-BeX"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92777470626724945" green="0.92758928998636903" blue="1" alpha="0.61150470890410957" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="AZe-HD-X5d" firstAttribute="top" secondItem="q1g-BW-tKL" secondAttribute="bottom" constant="27" id="7t6-oj-9lJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tyr-Jd-A83" secondAttribute="trailing" constant="15" id="ANf-pp-1YC"/>
+                                    <constraint firstAttribute="trailing" secondItem="AZe-HD-X5d" secondAttribute="trailing" constant="15" id="GIK-K8-uMh"/>
+                                    <constraint firstItem="AZe-HD-X5d" firstAttribute="leading" secondItem="vSD-9q-gtW" secondAttribute="leading" constant="15" id="IhP-rh-GJa"/>
+                                    <constraint firstItem="q1g-BW-tKL" firstAttribute="centerX" secondItem="vSD-9q-gtW" secondAttribute="centerX" id="OQh-qr-GsK"/>
+                                    <constraint firstItem="Tyr-Jd-A83" firstAttribute="top" secondItem="AZe-HD-X5d" secondAttribute="bottom" constant="15" id="PgP-ld-aga"/>
+                                    <constraint firstItem="IRe-yA-JSN" firstAttribute="top" secondItem="vSD-9q-gtW" secondAttribute="top" constant="10" id="QBk-Wk-B6C"/>
+                                    <constraint firstAttribute="trailing" secondItem="IRe-yA-JSN" secondAttribute="trailing" constant="15" id="hRp-D5-01h"/>
+                                    <constraint firstItem="IRe-yA-JSN" firstAttribute="leading" secondItem="vSD-9q-gtW" secondAttribute="leading" constant="15" id="iCb-oP-0sI"/>
+                                    <constraint firstItem="Tyr-Jd-A83" firstAttribute="leading" secondItem="vSD-9q-gtW" secondAttribute="leading" constant="15" id="qur-yP-blt"/>
+                                    <constraint firstItem="q1g-BW-tKL" firstAttribute="top" secondItem="IRe-yA-JSN" secondAttribute="bottom" constant="15" id="szB-qQ-abl"/>
+                                    <constraint firstItem="q1g-BW-tKL" firstAttribute="width" secondItem="IRe-yA-JSN" secondAttribute="width" id="u0B-80-Roc"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="vSD-9q-gtW" firstAttribute="top" secondItem="Gjx-uW-g1V" secondAttribute="top" constant="115" id="4Kh-zi-vcc"/>
                             <constraint firstItem="Gjx-uW-g1V" firstAttribute="bottom" secondItem="vSD-9q-gtW" secondAttribute="bottom" constant="179" id="GM8-vA-8SK"/>
@@ -94,13 +141,22 @@
                             <constraint firstItem="vSD-9q-gtW" firstAttribute="leading" secondItem="Gjx-uW-g1V" secondAttribute="leading" id="QFn-rh-TbE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gjx-uW-g1V"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="AsW-dn-g9X" appends="YES" id="596-FS-hDC"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="containerViewBottomConstraint" destination="GM8-vA-8SK" id="J3R-ed-5W8"/>
                         <outlet property="containerViewTopConstraint" destination="4Kh-zi-vcc" id="3dg-C5-om3"/>
+                        <outlet property="passwordTextField" destination="AZe-HD-X5d" id="xxF-rQ-6ca"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="taq-PC-iE2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="AsW-dn-g9X">
+                    <connections>
+                        <action selector="tapGestureDidRecognied:" destination="nnA-Xc-fVU" id="0fC-VY-nOg"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1808.8" y="-564.46776611694156"/>
         </scene>
