@@ -15,7 +15,6 @@ extension String {
     }
     
     var isValidHHPassword: Bool {
-        // here, `try!` will always succeed because the pattern is valid
         let regex = "^(?=.*?[A-Z]|[А-Я])(?=.*?[a-z]|[а-я])(?=.*?[0-9]).{6,}$"
         return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: self)
     }

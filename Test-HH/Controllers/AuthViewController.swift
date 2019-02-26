@@ -8,6 +8,8 @@
 
 import UIKit
 import TextFieldEffects
+import MBProgressHUD
+import Alamofire
 
 class AuthViewController: UIViewController {
 
@@ -43,11 +45,38 @@ class AuthViewController: UIViewController {
     }
     
     private func getWeather() {
-        print("request weather")
+        MBProgressHUD.showAdded(to: view, animated: true)
+        
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            // request current weather in Paris
+            AF.request("https://api.darksky.net/forecast/a20a0c89e5ec81e758273af2f5706234/48.80750193926096,2.561346336611407/?exclude=%5Bminutely,hourly,daily,alerts,flags%5D").responseData { response in
+                
+                switch response.result {
+                case .success(let value):
+                    do {
+                        let weather = try JSONDecoder().decode(Weather.self, from: value)
+                        DispatchQueue.main.async {
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            self.showAlert(withMessage: "It is \(weather.currently.summary) at \(weather.currently.temperature)°F in Paris. ", success: true)
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        self.showAlert(withMessage: error.localizedDescription)
+                    }
+                }
+            }
+            
+        }
+        
     }
     
-    private func showAlert(withMessage message: String?) {
-        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+    private func showAlert(withMessage message: String?, success: Bool = false ) {
+        let alert = UIAlertController(title: success ? "Успех" : "Ошибка", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)

@@ -7,5 +7,7 @@ target 'Test-HH' do
 
   # Pods for Test-HH
   pod 'TextFieldEffects'
+  pod 'MBProgressHUD'
+  pod 'Alamofire', '~> 5.0.0-beta.2'
 
 end
