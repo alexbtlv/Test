@@ -130,6 +130,9 @@
                                                 <real key="value" value="22"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="signInButtonTapped:" destination="nnA-Xc-fVU" eventType="touchUpInside" id="xyv-LD-DX0"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gmm-Az-fCi" customClass="HHRoundedButton" customModule="Test_HH" customModuleProvider="target">
                                         <rect key="frame" x="247" y="70" width="113" height="30"/>
@@ -152,6 +155,9 @@
                                                 <color key="value" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="fogotPasswordButtonTApped:" destination="nnA-Xc-fVU" eventType="touchUpInside" id="pgf-uN-GNw"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18e-hH-qQP">
                                         <rect key="frame" x="8" y="195" width="359" height="30"/>
@@ -159,6 +165,9 @@
                                         <state key="normal" title="У меня еще нет аккаунта. Создать.">
                                             <color key="titleColor" red="0.21568627450980393" green="0.52156862745098043" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signUpButtonTapped:" destination="nnA-Xc-fVU" eventType="touchUpInside" id="coP-vV-17z"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -201,6 +210,7 @@
                     <connections>
                         <outlet property="containerView" destination="vSD-9q-gtW" id="Ri4-o3-KAU"/>
                         <outlet property="containerViewBottomConstraint" destination="GG4-vj-E5Q" id="84K-re-Fvj"/>
+                        <outlet property="emailTextField" destination="IRe-yA-JSN" id="ycr-2o-g22"/>
                         <outlet property="passwordTextField" destination="AZe-HD-X5d" id="xxF-rQ-6ca"/>
                     </connections>
                 </viewController>

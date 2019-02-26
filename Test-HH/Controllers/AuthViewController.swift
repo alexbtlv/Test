@@ -13,9 +13,12 @@ class AuthViewController: UIViewController {
 
     @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordTextField: HoshiTextField!
+    @IBOutlet weak var emailTextField: HoshiTextField!
     @IBOutlet weak var containerView: UIView!
     
     private var password = String()
+    
+    // MARK: – View Controller life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,8 @@ class AuthViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    // MARK: – Helper functions
+    
     private func setupUI() {
         // remove "Back" text from nav bar back button
         navigationController?.navigationBar.topItem?.title = String()
@@ -37,9 +42,44 @@ class AuthViewController: UIViewController {
         view.layoutIfNeeded()
     }
     
+    private func getWeather() {
+        print("request weather")
+    }
+    
+    private func showAlert(withMessage message: String?) {
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: – Action Handlers
     
+    @IBAction func fogotPasswordButtonTApped(_ sender: Any) {
+        showAlert(withMessage: "Пожалуй мы должны дать пользователю возможность восстановить пароль.")
+    }
+    
+    @IBAction func signInButtonTapped(_ sender: Any) {
+        // check if email is correct
+        guard let text = emailTextField.text, text.isValidEmail else {
+            showAlert(withMessage: "Пожалуйста веедите корректный адрес почты")
+            return
+        }
+        // check if password is correct
+        guard password.isValidHHPassword else {
+            showAlert(withMessage: "Пожалуйста убедитесь что пароль содержит минимум 6 символов, минимум 1 строчную букву, 1 заглавную, и 1 цифру.")
+            return
+        }
+        getWeather()
+    }
+    
+    @IBAction func signUpButtonTapped(_ sender: Any) {
+        showAlert(withMessage: "Наверное должен появиться экран регистрации нового пользователя.")
+    }
+    
+    
     @IBAction func tapGestureDidRecognied(_ sender: Any) {
+        // dismiss keyboard
         view.endEditing(true)
     }
     
