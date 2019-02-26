@@ -10,4 +10,10 @@ target 'Test-HH' do
   pod 'MBProgressHUD'
   pod 'Alamofire', '~> 5.0.0-beta.2'
 
+  plugin 'cocoapods-keys', {
+    :project => "Test-HH",
+    :keys => [
+    "DarkSkyAPIKey"
+    ]
+  }
 end

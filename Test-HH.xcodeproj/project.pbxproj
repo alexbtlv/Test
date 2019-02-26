@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		851BDA592225075B00291B26 /* String_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851BDA582225075B00291B26 /* String_Extensions.swift */; };
 		851BDA5C2225249500291B26 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851BDA5B2225249500291B26 /* Weather.swift */; };
+		851BDA5E22256CE300291B26 /* SFUIText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 851BDA5D22256CE300291B26 /* SFUIText-Medium.ttf */; };
 		85E1A21D2224145F003406F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1A21C2224145F003406F8 /* AppDelegate.swift */; };
 		85E1A2222224145F003406F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85E1A2202224145F003406F8 /* Main.storyboard */; };
 		85E1A22422241460003406F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85E1A22322241460003406F8 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 		5244005A4C7FDF969EA6C569 /* Pods-Test-HH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test-HH.debug.xcconfig"; path = "Target Support Files/Pods-Test-HH/Pods-Test-HH.debug.xcconfig"; sourceTree = "<group>"; };
 		851BDA582225075B00291B26 /* String_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_Extensions.swift; sourceTree = "<group>"; };
 		851BDA5B2225249500291B26 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		851BDA5D22256CE300291B26 /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Medium.ttf"; sourceTree = "<group>"; };
 		85E1A2192224145F003406F8 /* Test-HH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test-HH.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E1A21C2224145F003406F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85E1A2212224145F003406F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				85E1A23E222438BE003406F8 /* SFUIText-Regular.ttf */,
+				851BDA5D22256CE300291B26 /* SFUIText-Medium.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				85E1A22422241460003406F8 /* Assets.xcassets in Resources */,
 				85E1A2222224145F003406F8 /* Main.storyboard in Resources */,
 				85E1A23F222438BE003406F8 /* SFUIText-Regular.ttf in Resources */,
+				851BDA5E22256CE300291B26 /* SFUIText-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +257,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Test-HH/Pods-Test-HH-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Keys/Keys.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 			);
@@ -261,6 +266,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keys.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 			);

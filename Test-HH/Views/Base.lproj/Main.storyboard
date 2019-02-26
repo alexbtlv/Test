@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SFUIText-Medium.ttf">
+            <string>SFUIText-Medium</string>
+        </array>
         <array key="SFUIText-Regular.ttf">
             <string>SFUIText-Regular</string>
         </array>
@@ -30,7 +33,7 @@
                                     <constraint firstAttribute="height" constant="44" id="Lwi-x0-0Co"/>
                                     <constraint firstAttribute="width" constant="150" id="oW3-TW-hsr"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI  Text" pointSize="15"/>
                                 <state key="normal" title="Авторизация">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -118,7 +121,7 @@
                                             <constraint firstAttribute="width" constant="147" id="Z5w-HM-TiC"/>
                                             <constraint firstAttribute="height" constant="44" id="oA2-2g-4Qw"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI  Text" pointSize="15"/>
                                         <state key="normal" title="Войти">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -242,4 +245,5 @@
             <point key="canvasLocation" x="133.59999999999999" y="-564.46776611694156"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

@@ -23,7 +23,11 @@ struct Weather {
 struct Currently {
     let time: Int
     let summary: String
-    let temperature: Double
+    let temperatureF: Double
+    var temperatureC: Double {
+        let tmp = (temperatureF - 32) / 1.8
+        return round(100*tmp)/100
+    }
 }
 
 extension Weather: Decodable,  Encodable  {
@@ -52,6 +56,6 @@ extension Currently: Decodable, Encodable {
         
         time = try container.decode(Int.self, forKey: .time)
         summary = try container.decode(String.self, forKey: .summary)
-        temperature = try container.decode(Double.self, forKey: .temperature)
+        temperatureF = try container.decode(Double.self, forKey: .temperature)
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 import TextFieldEffects
 import MBProgressHUD
 import Alamofire
+import Keys
 
 class AuthViewController: UIViewController {
 
@@ -42,6 +43,8 @@ class AuthViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = String()
         containerViewBottomConstraint.constant = view.frame.maxY / 2 - containerView.frame.height / 2
         view.layoutIfNeeded()
+        let navigationTitleFont = UIFont(name: "SFUIText-Medium", size: 17)!
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: navigationTitleFont]
     }
     
     private func getWeather() {
@@ -50,7 +53,8 @@ class AuthViewController: UIViewController {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
             // request current weather in Paris
-            AF.request("https://api.darksky.net/forecast/a20a0c89e5ec81e758273af2f5706234/48.80750193926096,2.561346336611407/?exclude=%5Bminutely,hourly,daily,alerts,flags%5D").responseData { response in
+            let keys = TestHHKeys()
+            AF.request("https://api.darksky.net/forecast/\(keys.darkSkyAPIKey)/48.80750193926096,2.561346336611407/?exclude=%5Bminutely,hourly,daily,alerts,flags%5D").responseData { response in
                 
                 switch response.result {
                 case .success(let value):
@@ -58,7 +62,7 @@ class AuthViewController: UIViewController {
                         let weather = try JSONDecoder().decode(Weather.self, from: value)
                         DispatchQueue.main.async {
                             MBProgressHUD.hide(for: self.view, animated: true)
-                            self.showAlert(withMessage: "It is \(weather.currently.summary) at \(weather.currently.temperature)°F in Paris. ", success: true)
+                            self.showAlert(withMessage: "It is \(weather.currently.summary) at \(weather.currently.temperatureC)°C in Paris. ", success: true)
                         }
                     } catch {
                         print(error.localizedDescription)
@@ -142,8 +146,9 @@ class AuthViewController: UIViewController {
 extension AuthViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == passwordTextField {
-            
+        
+        if textField == passwordTextField { 
+            // replace default bulletts with *
             let  char = string.cString(using: String.Encoding.utf8)!
             let isBackSpace = strcmp(char, "\\b")
             
