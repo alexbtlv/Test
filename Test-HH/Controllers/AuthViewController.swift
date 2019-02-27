@@ -12,7 +12,7 @@ import MBProgressHUD
 import Alamofire
 import Keys
 
-class AuthViewController: UIViewController {
+final class AuthViewController: UIViewController {
 
     @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordTextField: HoshiTextField!
@@ -41,10 +41,11 @@ class AuthViewController: UIViewController {
     private func setupUI() {
         // remove "Back" text from nav bar back button
         navigationController?.navigationBar.topItem?.title = String()
+        if let navigationTitleFont = UIFont(name: "SFUIText-Medium", size: 17) {
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: navigationTitleFont]
+        }
         containerViewBottomConstraint.constant = view.frame.maxY / 2 - containerView.frame.height / 2
         view.layoutIfNeeded()
-        let navigationTitleFont = UIFont(name: "SFUIText-Medium", size: 17)!
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: navigationTitleFont]
     }
     
     private func getWeather() {
@@ -65,7 +66,10 @@ class AuthViewController: UIViewController {
                             self.showAlert(withMessage: "It is \(weather.currently.summary) at \(weather.currently.temperatureC)°C in Paris. ", success: true)
                         }
                     } catch {
-                        print(error.localizedDescription)
+                        DispatchQueue.main.async {
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            self.showAlert(withMessage: error.localizedDescription)
+                        }
                     }
                 case .failure(let error):
                     DispatchQueue.main.async {
