@@ -50,32 +50,28 @@ final class AuthViewController: UIViewController {
     
     private func getWeather() {
         MBProgressHUD.showAdded(to: view, animated: true)
-        
-        DispatchQueue.global().async { [weak self] in
-            guard let self = self else { return }
-            // request current weather in Paris
-            let keys = TestHHKeys()
-            AF.request("https://api.darksky.net/forecast/\(keys.darkSkyAPIKey)/48.80750193926096,2.561346336611407/?exclude=%5Bminutely,hourly,daily,alerts,flags%5D").responseData { response in
-                
-                switch response.result {
-                case .success(let value):
-                    do {
-                        let weather = try JSONDecoder().decode(Weather.self, from: value)
-                        DispatchQueue.main.async {
-                            MBProgressHUD.hide(for: self.view, animated: true)
-                            self.showAlert(withMessage: "It is \(weather.currently.summary) at \(weather.currently.temperatureC)°C in Paris. ", success: true)
-                        }
-                    } catch {
-                        DispatchQueue.main.async {
-                            MBProgressHUD.hide(for: self.view, animated: true)
-                            self.showAlert(withMessage: error.localizedDescription)
-                        }
+        // request current weather in Paris
+        let keys = TestHHKeys()
+        AF.request("https://api.darksky.net/forecast/\(keys.darkSkyAPIKey)/48.80750193926096,2.561346336611407/?exclude=%5Bminutely,hourly,daily,alerts,flags%5D").responseData { response in
+            
+            switch response.result {
+            case .success(let value):
+                do {
+                    let weather = try JSONDecoder().decode(Weather.self, from: value)
+                    DispatchQueue.main.async {
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        self.showAlert(withMessage: "It is \(weather.currently.summary) at \(weather.currently.temperatureC)°C in Paris. ", success: true)
                     }
-                case .failure(let error):
+                } catch {
                     DispatchQueue.main.async {
                         MBProgressHUD.hide(for: self.view, animated: true)
                         self.showAlert(withMessage: error.localizedDescription)
                     }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showAlert(withMessage: error.localizedDescription)
                 }
             }
             
@@ -128,8 +124,7 @@ final class AuthViewController: UIViewController {
             containerViewBottomConstraint.constant = view.frame.maxY - endFrameY
             
             // animate
-            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: { [weak self] in
-                guard let self = self else { return }
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: {
                 self.view.layoutIfNeeded()
             }, completion: nil)
         }
@@ -139,10 +134,9 @@ final class AuthViewController: UIViewController {
         // set contsrains back to initial values
         containerViewBottomConstraint.constant = view.frame.maxY / 2 - containerView.frame.height / 2
         
-        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: { [weak self] in
-            guard let self = self else { return }
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
-            }, completion: nil)
+        }, completion: nil)
     }
 }
 
