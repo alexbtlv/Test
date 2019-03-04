@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Weather {
+struct Weather: Codable {
     let timezone: String
     let currently: Currently
     var date: String {
@@ -20,42 +20,13 @@ struct Weather {
     }
 }
 
-struct Currently {
+struct Currently: Codable {
     let time: Int
     let summary: String
-    let temperatureF: Double
+    let temperature: Double
     var temperatureC: Double {
-        let tmp = (temperatureF - 32) / 1.8
+        let tmp = (temperature - 32) / 1.8
         return round(100*tmp)/100
     }
 }
 
-extension Weather: Decodable,  Encodable  {
-    enum WeatherCodingKeys: String, CodingKey {
-        case timezone
-        case currently
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: WeatherCodingKeys.self)
-        
-        timezone = try container.decode(String.self, forKey: .timezone)
-        currently = try container.decode(Currently.self, forKey: .currently)
-    }
-}
-
-extension Currently: Decodable, Encodable {
-    enum CurrentlyCodingKeys: String, CodingKey {
-        case time
-        case summary
-        case temperature
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CurrentlyCodingKeys.self)
-        
-        time = try container.decode(Int.self, forKey: .time)
-        summary = try container.decode(String.self, forKey: .summary)
-        temperatureF = try container.decode(Double.self, forKey: .temperature)
-    }
-}
